@@ -16,10 +16,10 @@ function groupByCategory(products) {
     }, {});
 }
 
-function renderProducts() {
+function renderProducts(filteredProducts = null) {
     const list = document.getElementById('product-list');
     list.innerHTML = '';
-    const grouped = groupByCategory(products);
+    const grouped = groupByCategory(filteredProducts || products);
     Object.keys(grouped).forEach(category => {
         const section = document.createElement('section');
         section.className = 'category-section';
@@ -44,6 +44,35 @@ function renderProducts() {
         list.appendChild(section);
     });
 }
+
+function setupBudgetFilter() {
+    const budgetInput = document.getElementById('budget-input');
+    const budgetBtn = document.getElementById('budget-btn');
+    const budgetMsg = document.getElementById('budget-message');
+    budgetBtn.addEventListener('click', () => {
+        const budget = parseFloat(budgetInput.value);
+        if (isNaN(budget) || budget <= 0) {
+            renderProducts();
+            budgetMsg.textContent = 'Please enter a valid budget.';
+            budgetMsg.style.color = 'crimson';
+            return;
+        }
+        const filtered = products.filter(p => p.price <= budget);
+        renderProducts(filtered);
+        if (filtered.length === 0) {
+            budgetMsg.textContent = 'No products found within your budget.';
+            budgetMsg.style.color = 'crimson';
+        } else {
+            budgetMsg.textContent = `Showing products under $${budget.toFixed(2)}`;
+            budgetMsg.style.color = 'green';
+        }
+    });
+}
+
+window.onload = function() {
+    renderProducts();
+    setupBudgetFilter();
+};
 
 function addToCart(productId) {
     let cart = JSON.parse(localStorage.getItem('cart') || '[]');
