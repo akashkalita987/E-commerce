@@ -1,25 +1,47 @@
 // products.js
 const products = [
-    { id: 1, name: "Wireless Headphones", price: 59.99, image: "assets/headphones.png", description: "High quality wireless headphones." },
-    { id: 2, name: "Smart Watch", price: 99.99, image: "assets/smartwatch.png", description: "Track your fitness and notifications." },
-    { id: 3, name: "Bluetooth Speaker", price: 39.99, image: "assets/speaker.png", description: "Portable speaker with deep bass." },
-    { id: 4, name: "Laptop Stand", price: 29.99, image: "assets/laptopstand.png", description: "Ergonomic aluminum laptop stand." }
+    { id: 1, name: "Wireless Headphones", price: 59.99, image: "assets/headphones.png", description: "High quality wireless headphones.", category: "Electronics" },
+    { id: 2, name: "Smart Watch", price: 99.99, image: "assets/smartwatch.png", description: "Track your fitness and notifications.", category: "Electronics" },
+    { id: 3, name: "Bluetooth Speaker", price: 39.99, image: "assets/speaker.png", description: "Portable speaker with deep bass.", category: "Electronics" },
+    { id: 4, name: "Laptop Stand", price: 29.99, image: "assets/laptopstand.png", description: "Ergonomic aluminum laptop stand.", category: "Accessories" }
 ];
+
+function groupByCategory(products) {
+    return products.reduce((groups, product) => {
+        if (!groups[product.category]) {
+            groups[product.category] = [];
+        }
+        groups[product.category].push(product);
+        return groups;
+    }, {});
+}
 
 function renderProducts() {
     const list = document.getElementById('product-list');
     list.innerHTML = '';
-    products.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>$${product.price.toFixed(2)}</p>
-            <button class="btn" onclick="addToCart(${product.id})">Add to Cart</button>
-            <p style="font-size:0.9em;color:#666;">${product.description}</p>
-        `;
-        list.appendChild(card);
+    const grouped = groupByCategory(products);
+    Object.keys(grouped).forEach(category => {
+        const section = document.createElement('section');
+        section.className = 'category-section';
+        const heading = document.createElement('h3');
+        heading.textContent = category;
+        section.appendChild(heading);
+        const container = document.createElement('div');
+        container.className = 'category-products';
+        grouped[category].forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h4>${product.name}</h4>
+                <p>$${product.price.toFixed(2)}</p>
+                <button class="btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                <p style="font-size:0.9em;color:#666;">${product.description}</p>
+            `;
+            container.appendChild(card);
+        });
+        section.appendChild(container);
+        list.appendChild(section);
     });
 }
 
