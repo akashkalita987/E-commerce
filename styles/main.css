@@ -1,30 +1,38 @@
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Amazon Ember', Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    background: #f8f9fa;
-    color: #222;
+    background: #EAEDED;
+    color: #111;
 }
 header {
-    background: #222;
+    background: #131921;
     color: #fff;
-    padding: 1rem 2rem;
+    padding: 0.7rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 header h1 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #FF9900;
 }
 nav a {
     color: #fff;
     text-decoration: none;
     margin-left: 1.5rem;
     font-weight: 500;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    transition: background 0.2s;
 }
 nav a:hover {
-    text-decoration: underline;
+    background: #232F3E;
+    color: #FF9900;
 }
 main {
     padding: 2rem;
@@ -33,24 +41,27 @@ main {
     background: #fff;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     text-align: center;
 }
 .btn {
     display: inline-block;
-    background: #007bff;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
+    background: linear-gradient(#FFD814,#FFA41C);
+    color: #111;
+    padding: 0.7rem 1.5rem;
     border-radius: 4px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     margin-top: 1rem;
-    transition: background 0.2s;
-    border: none;
+    transition: background 0.2s, box-shadow 0.2s;
+    border: 1px solid #FCD200;
     cursor: pointer;
+    box-shadow: 0 1px 0 rgba(255,153,0,0.15);
 }
 .btn:hover {
-    background: #0056b3;
+    background: linear-gradient(#F7CA00,#FF9900);
+    color: #232F3E;
+    box-shadow: 0 2px 8px rgba(255,153,0,0.12);
 }
 .product-list {
     display: grid;
@@ -60,23 +71,37 @@ main {
 .product-card {
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(34,34,34,0.08);
+    padding: 1.2rem 1rem 1.5rem 1rem;
     text-align: center;
+    border: 1px solid #DDD;
+    transition: box-shadow 0.2s, border 0.2s;
 }
+.product-card:hover {
+    box-shadow: 0 4px 16px rgba(255,153,0,0.13);
+    border: 1.5px solid #FF9900;
+}
+}
+    
 .product-card img {
     max-width: 100%;
     height: 140px;
     object-fit: contain;
     margin-bottom: 1rem;
+    background: #F7FAFA;
+    border-radius: 4px;
+    border: 1px solid #eee;
 }
+    
 .cart-items {
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(34,34,34,0.08);
     padding: 1rem;
     margin-bottom: 2rem;
+    border: 1px solid #DDD;
 }
+    
 .cart-item {
     display: flex;
     align-items: center;
@@ -84,9 +109,11 @@ main {
     padding: 0.5rem 0;
     border-bottom: 1px solid #eee;
 }
+    
 .cart-item:last-child {
     border-bottom: none;
 }
+    
 .checkout-form {
     display: flex;
     flex-direction: column;
@@ -94,22 +121,55 @@ main {
     background: #fff;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(34,34,34,0.08);
     max-width: 400px;
     margin: 0 auto;
+    border: 1px solid #DDD;
 }
+    
 .checkout-form label {
     display: flex;
     flex-direction: column;
     font-weight: 500;
 }
 footer {
-    background: #222;
+    background: #232F3E;
     color: #fff;
     text-align: center;
     padding: 1rem 0;
     margin-top: 2rem;
+    font-size: 1rem;
 }
+    
 .hidden {
     display: none;
 }
+/* Amazon-like search bar */
+.search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+}
+.search-bar input[type="text"] {
+    width: 350px;
+    padding: 0.5rem 1rem;
+    border: 1.5px solid #DDD;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+    outline: none;
+}
+.search-bar button {
+    padding: 0.5rem 1.2rem;
+    border: none;
+    background: #FF9900;
+    color: #111;
+    font-weight: 700;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.search-bar button:hover {
+    background: #FFA41C;
+}
+/* End Amazon-like search bar */
