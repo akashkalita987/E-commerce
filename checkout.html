@@ -21,6 +21,7 @@
             <label>Name: <input type="text" name="name" required></label>
             <label>Email: <input type="email" name="email" required></label>
             <label>Address: <input type="text" name="address" required></label>
+            <label>Pincode: <input type="text" name="pincode" pattern="[0-9]{6}" maxlength="6" required></label>
             <button type="submit" class="btn">Place Order</button>
         </form>
         <div id="order-success" class="hidden">Thank you for your order!</div>
