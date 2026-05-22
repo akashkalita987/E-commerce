@@ -17,6 +17,12 @@
     </header>
     <main>
         <h2>Products</h2>
+        <section id="budget-section" class="budget-section">
+            <label for="budget-input">Budget ($): </label>
+            <input type="number" id="budget-input" min="0" step="0.01" placeholder="Enter your budget">
+            <button id="budget-btn" class="btn">Filter</button>
+            <span id="budget-message" class="budget-message"></span>
+        </section>
         <section id="product-list" class="product-list"></section>
     </main>
     <footer>
