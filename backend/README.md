@@ -15,7 +15,6 @@ CREATE TABLE products (
   image VARCHAR(255)
 );
 ```
-
 ## API Endpoints
 - `/backend/index.php?endpoint=products` (GET): List all products
 - `/backend/index.php?endpoint=cart` (POST): Add to cart (expand logic as needed)
